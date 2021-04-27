@@ -19,7 +19,7 @@ import resources.RestApp.ServiceCompte;
 @Path("/xml/compte")
 public class XMLServices {
 	List<Compte>lesComptes=new ArrayList<Compte>();
-	//Compte c2= new Compte("LELEUX","Célia");
+	
 	static ServiceCompte service =new ServiceCompte();
 	/*
 	 * methode qui fait appel à la methode @POST pour creer u compte
@@ -47,8 +47,8 @@ public class XMLServices {
 	public static List<Compte> listCompte()
 	{
 		
-		System.out.println(service.getCompteList());
-		return service.getCompteList();
+		System.out.println(service.getDonnes());
+		return service.getDonnes();
 	}
 	/*
 	 * methode permet d'afficher un compte existant
@@ -60,9 +60,9 @@ public class XMLServices {
 	public Compte trouverCompte(@PathParam("nom") String nom,@PathParam("prenom") String prenom)
 	{
 		
-		lesComptes=service.getCompteList();
-		System.out.println(lesComptes);
-		return service.rechercheCompte(nom, prenom);
+		//lesComptes=service.getCompteList();
+		System.out.println(service.getDonnes());
+		return service.rechercheDonnees(nom, prenom);
 		
 	}
 	/*
@@ -76,8 +76,8 @@ public class XMLServices {
 	{
 		Compte compte=new Compte(nom,prenom);
 		System.out.println(service.getCompteList());
-		service.rechercheCompte(nom, prenom);
-		compte=service.rechercheCompte(nom, prenom);
+		service.rechercheDonnees(nom, prenom);
+		compte=service.rechercheDonnees(nom, prenom);
 		compte.getSold();
 		System.out.println(compte.getSold());
 		return "<solde>"+compte.getSold()+"</solde>";
@@ -93,12 +93,12 @@ public class XMLServices {
 			@PathParam("prenom") String prenom,@PathParam("sold") double sold)
 	{
 		Compte compte=null;
-		compte=service.rechercheCompte(nom, prenom);
+		compte=service.rechercheDonnees(nom, prenom);
 		if(compte!=null)
-		service.rechercheCompte(nom, prenom).crediterCompte(sold);
-		System.out.print(service.rechercheCompte(nom, prenom).getNom()+"\n");
-		System.out.print(service.rechercheCompte(nom, prenom).getPrenom()+"\n");
-		System.out.print(service.rechercheCompte(nom, prenom).getSold()+"\n");
+		service.rechercheDonnees(nom, prenom).crediterCompte(sold);
+		System.out.print(service.rechercheDonnees(nom, prenom).getNom()+"\n");
+		System.out.print(service.rechercheDonnees(nom, prenom).getPrenom()+"\n");
+		System.out.print(service.rechercheDonnees(nom, prenom).getSold()+"\n");
 		return compte;
 	}
 	/*
@@ -111,12 +111,12 @@ public class XMLServices {
 			@PathParam("prenom") String prenom,@PathParam("sold") double sold)
 	{
 		Compte compte=null;
-		compte=service.rechercheCompte(nom, prenom);
+		compte=service.rechercheDonnees(nom, prenom);
 		if(compte!=null)
-		service.rechercheCompte(nom, prenom).debiterCompte(sold);
-		System.out.print(service.rechercheCompte(nom, prenom).getNom()+"\n");
-		System.out.print(service.rechercheCompte(nom, prenom).getPrenom()+"\n");
-		System.out.print(service.rechercheCompte(nom, prenom).getSold()+"\n");
+		service.rechercheDonnees(nom, prenom).debiterCompte(sold);
+		System.out.print(service.rechercheDonnees(nom, prenom).getNom()+"\n");
+		System.out.print(service.rechercheDonnees(nom, prenom).getPrenom()+"\n");
+		System.out.print(service.rechercheDonnees(nom, prenom).getSold()+"\n");
 		return compte;
 	}
 	

@@ -21,9 +21,9 @@ public class JSONServices {
 	public String getSoldCompteJson(@PathParam("nom") String nom,@PathParam("prenom") String prenom)
 	{
 		Compte compte=new Compte(nom,prenom);
-		System.out.println(service.getCompteList());
-		service.rechercheCompte(nom, prenom);
-		compte=service.rechercheCompte(nom, prenom);
+		System.out.println(service.getDonnes());
+		service.rechercheDonnees(nom, prenom);
+		compte=service.rechercheDonnees(nom, prenom);
 		compte.getSold();
 		System.out.println(compte.getSold());
 		return "votre solde est :"+ compte.getSold();
@@ -38,9 +38,15 @@ public class JSONServices {
 	//afficher les comptes
 	public static List<Compte> listCompteJson()
 	{
+		System.out.println(service.getDonnes());
+		return service.getDonnes();
 		
-		System.out.println(service.getCompteList());
-		return service.getCompteList();
+		/*
+		 * System.out.println(service.getCompteList());
+		 */
+		/*
+		 * return service.getCompteList();
+		 */
 	}
 	/*
 	 * Fonction pour crediter compte
@@ -52,12 +58,12 @@ public class JSONServices {
 			@PathParam("prenom") String prenom,@PathParam("sold") double sold)
 	{
 		Compte compte=null;
-		compte=service.rechercheCompte(nom, prenom);
+		compte=service.rechercheDonnees(nom, prenom);
 		if(compte!=null)
-		service.rechercheCompte(nom, prenom).crediterCompte(sold);
-		System.out.print(service.rechercheCompte(nom, prenom).getNom()+"\n");
-		System.out.print(service.rechercheCompte(nom, prenom).getPrenom()+"\n");
-		System.out.print(service.rechercheCompte(nom, prenom).getSold()+"\n");
+		service.rechercheDonnees(nom, prenom).crediterCompte(sold);
+		System.out.print(service.rechercheDonnees(nom, prenom).getNom()+"\n");
+		System.out.print(service.rechercheDonnees(nom, prenom).getPrenom()+"\n");
+		System.out.print(service.rechercheDonnees(nom, prenom).getSold()+"\n");
 		return compte;
 	}
 	/*
@@ -70,12 +76,12 @@ public class JSONServices {
 			@PathParam("prenom") String prenom,@PathParam("sold") double sold)
 	{
 		Compte compte=null;
-		compte=service.rechercheCompte(nom, prenom);
+		compte=service.rechercheDonnees(nom, prenom);
 		if(compte!=null)
-		service.rechercheCompte(nom, prenom).debiterCompte(sold);
-		System.out.print(service.rechercheCompte(nom, prenom).getNom()+"\n");
-		System.out.print(service.rechercheCompte(nom, prenom).getPrenom()+"\n");
-		System.out.print(service.rechercheCompte(nom, prenom).getSold()+"\n");
+		service.rechercheDonnees(nom, prenom).debiterCompte(sold);
+		System.out.print(service.rechercheDonnees(nom, prenom).getNom()+"\n");
+		System.out.print(service.rechercheDonnees(nom, prenom).getPrenom()+"\n");
+		System.out.print(service.rechercheDonnees(nom, prenom).getSold()+"\n");
 		return compte;
 	}
 	

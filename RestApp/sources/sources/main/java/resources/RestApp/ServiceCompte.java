@@ -4,8 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 public class ServiceCompte {
-	List<Compte> lesComptes=new ArrayList<Compte>();
-	
+	 List<Compte> lesComptes=new ArrayList<Compte>();
+	 protected static final List<Compte> donnees =new ArrayList<Compte>();
+	static {
+		initCompts();
+	}
+	protected static void initCompts() {
+		Compte comp1= new Compte("RANDRIANANDRASANA", "Harivelo");
+		Compte comp2= new Compte("DUPONT", "Anne");
+		Compte comp3= new Compte("LEROI", "Perre");
+		comp1.crediterCompte(500.0);
+		comp2.crediterCompte(1000.0);
+		comp3.crediterCompte(450.0);
+		donnees.add(comp1);
+		donnees.add(comp2);
+		donnees.add(comp3);	
+		
+	}
+	public List<Compte> getDonnes()
+	{
+		return donnees;
+	}
 	public ServiceCompte() {
 		super();
 	}
@@ -74,6 +93,20 @@ public class ServiceCompte {
 	public Compte  rechercheCompte(final String nom, String prenom)
 	{
 		List<Compte> result = lesComptes.stream()             // convert list to stream
+              	.filter(compte -> (nom.equals(compte.nom) && nom.equals(compte.nom)))   // we dont like mkyong
+		        .collect(Collectors.toList());
+				
+				if(result.equals(null)) return null;
+				if(result.isEmpty())
+					return null;
+				else return result.get(0);
+		
+		//boolean resultat=true;
+	
+	}
+	public Compte  rechercheDonnees(final String nom, String prenom)
+	{
+		List<Compte> result = donnees.stream()             // convert list to stream
               	.filter(compte -> (nom.equals(compte.nom) && nom.equals(compte.nom)))   // we dont like mkyong
 		        .collect(Collectors.toList());
 				

@@ -15,11 +15,7 @@ import resources.RestApp.ServiceCompte;
 @Path("/json/compte")
 public class JSONServices {
 	static ServiceCompte service =new ServiceCompte();
-	public JSONServices() {
-		service.ajouterCompte("RANDRIANANDRASANA", "Harivelo",300.0);
-		service.ajouterCompte("LELEUX", "Celia",450.5);
-		service.ajouterCompte("VAN BUGGENHOUT", "Johan", 500.5);
-	}
+	
 	@GET
     @Path("/sold/{nom}/{prenom}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -34,6 +30,9 @@ public class JSONServices {
 		return "<solde>"+compte.getSold()+"</solde>";
 		
 	}
+	/*
+	 * Foction permet d'afficher tous les compte
+	 */
 	@GET
     @Path("/listeCompte")
     @Produces(MediaType.APPLICATION_JSON)
@@ -44,6 +43,9 @@ public class JSONServices {
 		System.out.println(service.getCompteList());
 		return service.getCompteList();
 	}
+	/*
+	 * Fonction pour crediter compte
+	 */
 	@PUT
 	@Path("/crediter/{nom}/{prenom}/{sold}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -59,6 +61,9 @@ public class JSONServices {
 		System.out.print(service.rechercheCompte(nom, prenom).getSold()+"\n");
 		return compte;
 	}
+	/*
+	 * Fonction pour debiter compte
+	 */
 	@PUT
 	@Path("/debiter/{nom}/{prenom}/{sold}")
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -21,10 +21,9 @@ public class XMLServices {
 	List<Compte>lesComptes=new ArrayList<Compte>();
 	//Compte c2= new Compte("LELEUX","Célia");
 	static ServiceCompte service =new ServiceCompte();
-	public XMLServices() {
-		service.ajouterCompte("RANDRIANANDRASANA", "Harivelo",300.0);
-		service.ajouterCompte("LELEUX", "Celia",450.5);
-	}
+	/*
+	 * methode qui fait appel à la methode @POST pour creer u compte
+	 */
 	@POST
     @Path("/{nom}/{prenom}/{sold}")
     @Produces(MediaType.APPLICATION_XML)
@@ -38,20 +37,23 @@ public class XMLServices {
         service.ajouterCompte(nom, prenom, sold);
         return compte;
     }
+	/*
+	 * methode qui permet d'afficher la liste de tous les compte existant 
+	 */
 	@GET
     @Path("/listeCompte")
     @Produces(MediaType.APPLICATION_XML)
 	//afficher les comptes
 	public static List<Compte> listCompte()
 	{
-		//List<Compte> xmlListCompte= new ArrayList<Compte>();
-		//lesComptes=service.getCompteList();
-		//service.ajouterCompte("RANDRIANANDRASANA", "Harivelo",300.0);
-		//service.ajouterCompte("LELEUX", "Celia",450.5);
-		//System.out.println(service.getCompteList());
+		
 		System.out.println(service.getCompteList());
 		return service.getCompteList();
 	}
+	/*
+	 * methode permet d'afficher un compte existant
+	 * elle prend comme parametre nom,prenom
+	 */
 	@GET
     @Path("/recherche/{nom}/{prenom}")
     @Produces(MediaType.APPLICATION_XML)
@@ -63,7 +65,10 @@ public class XMLServices {
 		return service.rechercheCompte(nom, prenom);
 		
 	}
-	
+	/*
+	 * methode permet d'affiche le sold d'un compte et 
+	 * prend comme parametre nom, prénom
+	 */
 	@GET
     @Path("/sold/{nom}/{prenom}")
     @Produces(MediaType.APPLICATION_XML)
@@ -78,6 +83,9 @@ public class XMLServices {
 		return "<solde>"+compte.getSold()+"</solde>";
 		
 	}
+	/*
+	 * methode permet de crediter compte
+	 */
 	@PUT
 	@Path("/crediter/{nom}/{prenom}/{sold}")
 	@Consumes(MediaType.APPLICATION_XML)
@@ -93,6 +101,9 @@ public class XMLServices {
 		System.out.print(service.rechercheCompte(nom, prenom).getSold()+"\n");
 		return compte;
 	}
+	/*
+	 * methode permet de debiter compte avec @PUT
+	 */
 	@PUT
 	@Path("/debiter/{nom}/{prenom}/{sold}")
 	@Consumes(MediaType.APPLICATION_XML)

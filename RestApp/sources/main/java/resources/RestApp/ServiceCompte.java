@@ -39,6 +39,10 @@ public class ServiceCompte {
 		return lesComptes;
 		
 	}
+	/*
+	 *methode qui permet de créer un compte
+	 *elle prend comme parametre nom n , prenom p et le sold  s
+	 */
 	public Compte createCompte(String n, String p,double s)
 	{
 		Compte compte = null;
@@ -62,13 +66,11 @@ public class ServiceCompte {
 			return compte;
 		}
 	}
-	public Compte findCompte(String nom,String prenom)
-	{
-		for(Compte compte:lesComptes)
-			if(compte.getNom().equalsIgnoreCase(nom))
-				return compte;
-		return null;
-	}
+	
+	/*
+	 *methode qui permet de faire une recherche compte 
+	 * en fonction de nom et prenom donnés dans le parametre
+	 */
 	public Compte  rechercheCompte(final String nom, String prenom)
 	{
 		List<Compte> result = lesComptes.stream()             // convert list to stream
@@ -87,6 +89,9 @@ public class ServiceCompte {
 	{
 		return compte.getSold();
 	}
+	/*
+	 * methode permet de crediter un compte c d'un montant donné dans le parametre
+	 */
 	public double CrediterSonCompte(Compte c,double montant)
 	{
 		return c.crediterCompte(montant);
@@ -95,6 +100,9 @@ public class ServiceCompte {
 	{
 		return c.debiterCompte(montant);
 	}
+	/*
+	 * methode permet de debiter un compte c d'un montant comme parametre
+	 */
 	public Compte afficherCompte(Compte compte)
 	{
 		return compte;

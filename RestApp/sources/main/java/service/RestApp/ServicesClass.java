@@ -17,13 +17,13 @@ public class ServicesClass {
 	public String addIt() {
         return "Resultat GET!";
 	}
-	@GET
-	@Path("/comptexml")
-	@Produces(MediaType.APPLICATION_XML)
-	public double getSold(){
+	//@GET
+	//@Path("/comptexml")
+	//@Produces(MediaType.APPLICATION_XML)
+	//public double getSold(){
 		
-		Compte c= new Compte("RANDRIANANDRASASANA","Harivelo");
-		return c.getSold();
-	}
+		
+		//return c.getSold();
+	//}
 
 }

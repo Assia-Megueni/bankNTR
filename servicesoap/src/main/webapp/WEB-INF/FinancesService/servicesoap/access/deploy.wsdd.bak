@@ -1,0 +1,32 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from FinancesService WSDL service -->
+
+  <service name="Finances" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://access.servicesoap"/>
+      <parameter name="wsdlServiceElement" value="FinancesService"/>
+      <parameter name="schemaQualified" value="http://access.servicesoap"/>
+      <parameter name="wsdlServicePort" value="Finances"/>
+      <parameter name="className" value="servicesoap.access.FinancesSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Finances"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="rembourserCommande" qname="operNS:rembourserCommande" xmlns:operNS="http://access.servicesoap" returnQName="retNS:rembourserCommandeReturn" xmlns:retNS="http://access.servicesoap" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idCommande" xmlns:pns="http://access.servicesoap" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="payerCommande" qname="operNS:payerCommande" xmlns:operNS="http://access.servicesoap" returnQName="retNS:payerCommandeReturn" xmlns:retNS="http://access.servicesoap" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idCommande" xmlns:pns="http://access.servicesoap" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="payerCommande rembourserCommande"/>
+
+  </service>
+</deployment>

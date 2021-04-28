@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://access.servicesoap" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://access.servicesoap" xmlns:intf="http://access.servicesoap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://access.servicesoap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="ajoutArticle">
+    <complexType>
+     <sequence>
+      <element name="idcommande" type="xsd:int"/>
+      <element name="idarticle" type="xsd:int"/>
+      <element name="quantité" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ajoutArticleResponse">
+    <complexType>
+     <sequence>
+      <element name="ajoutArticleReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retraitArticle">
+    <complexType>
+     <sequence>
+      <element name="idcommande" type="xsd:int"/>
+      <element name="idarticle" type="xsd:int"/>
+      <element name="quantité" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retraitArticleResponse">
+    <complexType>
+     <sequence>
+      <element name="retraitArticleReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="creerCommande">
+    <complexType>
+     <sequence>
+      <element name="idClient" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="creerCommandeResponse">
+    <complexType>
+     <sequence>
+      <element name="creerCommandeReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listeCommandes">
+    <complexType/>
+   </element>
+   <element name="listeCommandesResponse">
+    <complexType>
+     <sequence>
+      <element name="listeCommandesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="commandesClient">
+    <complexType>
+     <sequence>
+      <element name="nom" type="xsd:string"/>
+      <element name="prenom" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="commandesClientResponse">
+    <complexType>
+     <sequence>
+      <element name="commandesClientReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="retraitArticleResponse">
+
+      <wsdl:part element="impl:retraitArticleResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listeCommandesResponse">
+
+      <wsdl:part element="impl:listeCommandesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listeCommandesRequest">
+
+      <wsdl:part element="impl:listeCommandes" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="commandesClientResponse">
+
+      <wsdl:part element="impl:commandesClientResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="commandesClientRequest">
+
+      <wsdl:part element="impl:commandesClient" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ajoutArticleRequest">
+
+      <wsdl:part element="impl:ajoutArticle" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="creerCommandeRequest">
+
+      <wsdl:part element="impl:creerCommande" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ajoutArticleResponse">
+
+      <wsdl:part element="impl:ajoutArticleResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retraitArticleRequest">
+
+      <wsdl:part element="impl:retraitArticle" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="creerCommandeResponse">
+
+      <wsdl:part element="impl:creerCommandeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Commandes">
+
+      <wsdl:operation name="ajoutArticle">
+
+         <wsdl:input message="impl:ajoutArticleRequest" name="ajoutArticleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:ajoutArticleResponse" name="ajoutArticleResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retraitArticle">
+
+         <wsdl:input message="impl:retraitArticleRequest" name="retraitArticleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:retraitArticleResponse" name="retraitArticleResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="creerCommande">
+
+         <wsdl:input message="impl:creerCommandeRequest" name="creerCommandeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:creerCommandeResponse" name="creerCommandeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listeCommandes">
+
+         <wsdl:input message="impl:listeCommandesRequest" name="listeCommandesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listeCommandesResponse" name="listeCommandesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="commandesClient">
+
+         <wsdl:input message="impl:commandesClientRequest" name="commandesClientRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:commandesClientResponse" name="commandesClientResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CommandesSoapBinding" type="impl:Commandes">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="ajoutArticle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ajoutArticleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ajoutArticleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retraitArticle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="retraitArticleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="retraitArticleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="creerCommande">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="creerCommandeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="creerCommandeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listeCommandes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listeCommandesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listeCommandesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="commandesClient">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="commandesClientRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="commandesClientResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CommandesService">
+
+      <wsdl:port binding="impl:CommandesSoapBinding" name="Commandes">
+
+         <wsdlsoap:address location="http://localhost:8080/servicesoap/services/Commandes"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

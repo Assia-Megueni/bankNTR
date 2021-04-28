@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://access.servicesoap" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://access.servicesoap" xmlns:intf="http://access.servicesoap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://access.servicesoap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getArticle">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getArticleResponse">
+    <complexType>
+     <sequence>
+      <element name="getArticleReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ajoutArticle">
+    <complexType>
+     <sequence>
+      <element name="nom" type="xsd:string"/>
+      <element name="categorie" type="xsd:string"/>
+      <element name="prix" type="xsd:double"/>
+      <element name="idVendeur" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ajoutArticleResponse">
+    <complexType>
+     <sequence>
+      <element name="ajoutArticleReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changerPrix">
+    <complexType>
+     <sequence>
+      <element name="idArticle" type="xsd:int"/>
+      <element name="prix" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changerPrixResponse">
+    <complexType>
+     <sequence>
+      <element name="changerPrixReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changerCatégorie">
+    <complexType>
+     <sequence>
+      <element name="idArticle" type="xsd:int"/>
+      <element name="categorie" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="changerCatégorieResponse">
+    <complexType>
+     <sequence>
+      <element name="changerCatégorieReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ajoutStock">
+    <complexType>
+     <sequence>
+      <element name="idArticle" type="xsd:int"/>
+      <element name="quantité" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ajoutStockResponse">
+    <complexType>
+     <sequence>
+      <element name="ajoutStockReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retirerStock">
+    <complexType>
+     <sequence>
+      <element name="idArticle" type="xsd:int"/>
+      <element name="quantité" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retirerStockResponse">
+    <complexType>
+     <sequence>
+      <element name="retirerStockReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllArticles">
+    <complexType/>
+   </element>
+   <element name="getAllArticlesResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllArticlesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getArticleRequest">
+
+      <wsdl:part element="impl:getArticle" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retirerStockRequest">
+
+      <wsdl:part element="impl:retirerStock" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changerPrixResponse">
+
+      <wsdl:part element="impl:changerPrixResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changerCatégorieRequest">
+
+      <wsdl:part element="impl:changerCatégorie" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllArticlesRequest">
+
+      <wsdl:part element="impl:getAllArticles" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getArticleResponse">
+
+      <wsdl:part element="impl:getArticleResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ajoutStockRequest">
+
+      <wsdl:part element="impl:ajoutStock" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllArticlesResponse">
+
+      <wsdl:part element="impl:getAllArticlesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changerPrixRequest">
+
+      <wsdl:part element="impl:changerPrix" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changerCatégorieResponse">
+
+      <wsdl:part element="impl:changerCatégorieResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ajoutStockResponse">
+
+      <wsdl:part element="impl:ajoutStockResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retirerStockResponse">
+
+      <wsdl:part element="impl:retirerStockResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ajoutArticleRequest">
+
+      <wsdl:part element="impl:ajoutArticle" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="ajoutArticleResponse">
+
+      <wsdl:part element="impl:ajoutArticleResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Articles">
+
+      <wsdl:operation name="getArticle">
+
+         <wsdl:input message="impl:getArticleRequest" name="getArticleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getArticleResponse" name="getArticleResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ajoutArticle">
+
+         <wsdl:input message="impl:ajoutArticleRequest" name="ajoutArticleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:ajoutArticleResponse" name="ajoutArticleResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changerPrix">
+
+         <wsdl:input message="impl:changerPrixRequest" name="changerPrixRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:changerPrixResponse" name="changerPrixResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changerCatégorie">
+
+         <wsdl:input message="impl:changerCatégorieRequest" name="changerCatégorieRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:changerCatégorieResponse" name="changerCatégorieResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ajoutStock">
+
+         <wsdl:input message="impl:ajoutStockRequest" name="ajoutStockRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:ajoutStockResponse" name="ajoutStockResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retirerStock">
+
+         <wsdl:input message="impl:retirerStockRequest" name="retirerStockRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:retirerStockResponse" name="retirerStockResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllArticles">
+
+         <wsdl:input message="impl:getAllArticlesRequest" name="getAllArticlesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllArticlesResponse" name="getAllArticlesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ArticlesSoapBinding" type="impl:Articles">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getArticle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getArticleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getArticleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ajoutArticle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ajoutArticleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ajoutArticleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changerPrix">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changerPrixRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changerPrixResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changerCatégorie">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changerCatégorieRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changerCatégorieResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ajoutStock">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ajoutStockRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ajoutStockResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retirerStock">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="retirerStockRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="retirerStockResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllArticles">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllArticlesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllArticlesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ArticlesService">
+
+      <wsdl:port binding="impl:ArticlesSoapBinding" name="Articles">
+
+         <wsdlsoap:address location="http://localhost:8080/servicesoap/services/Articles"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

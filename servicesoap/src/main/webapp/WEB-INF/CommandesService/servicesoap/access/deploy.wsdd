@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CommandesService WSDL service -->
+
+  <service name="Commandes" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://access.servicesoap"/>
+      <parameter name="wsdlServiceElement" value="CommandesService"/>
+      <parameter name="schemaQualified" value="http://access.servicesoap"/>
+      <parameter name="wsdlServicePort" value="Commandes"/>
+      <parameter name="className" value="servicesoap.access.Commandes"/>
+      <parameter name="wsdlPortType" value="Commandes"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="ajoutArticle" qname="operNS:ajoutArticle" returnQName="retNS:ajoutArticleReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idcommande" type="tns:int"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idarticle" type="tns:int"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantité" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="retraitArticle" qname="operNS:retraitArticle" returnQName="retNS:retraitArticleReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idcommande" type="tns:int"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idarticle" type="tns:int"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantité" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="creerCommande" qname="operNS:creerCommande" returnQName="retNS:creerCommandeReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idClient" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="listeCommandes" qname="operNS:listeCommandes" returnQName="retNS:listeCommandesReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="commandesClient" qname="operNS:commandesClient" returnQName="retNS:commandesClientReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:prenom" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="retraitArticle listeCommandes creerCommande commandesClient ajoutArticle"/>
+
+  </service>
+</deployment>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ArticlesService WSDL service -->
+
+  <service name="Articles" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://access.servicesoap"/>
+      <parameter name="wsdlServiceElement" value="ArticlesService"/>
+      <parameter name="schemaQualified" value="http://access.servicesoap"/>
+      <parameter name="wsdlServicePort" value="Articles"/>
+      <parameter name="className" value="servicesoap.access.Articles"/>
+      <parameter name="wsdlPortType" value="Articles"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getArticle" qname="operNS:getArticle" returnQName="retNS:getArticleReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="ajoutArticle" qname="operNS:ajoutArticle" returnQName="retNS:ajoutArticleReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:categorie" type="tns:string"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:prix" type="tns:double"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idVendeur" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="changerPrix" qname="operNS:changerPrix" returnQName="retNS:changerPrixReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idArticle" type="tns:int"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:prix" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="changerCatégorie" qname="operNS:changerCatégorie" returnQName="retNS:changerCatégorieReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idArticle" type="tns:int"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:categorie" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="ajoutStock" qname="operNS:ajoutStock" returnQName="retNS:ajoutStockReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idArticle" type="tns:int"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantité" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="retirerStock" qname="operNS:retirerStock" returnQName="retNS:retirerStockReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idArticle" type="tns:int"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantité" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAllArticles" qname="operNS:getAllArticles" returnQName="retNS:getAllArticlesReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="changerCatégorie retirerStock getArticle ajoutArticle getAllArticles changerPrix ajoutStock"/>
+
+  </service>
+</deployment>

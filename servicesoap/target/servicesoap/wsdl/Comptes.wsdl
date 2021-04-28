@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://access.servicesoap" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://access.servicesoap" xmlns:intf="http://access.servicesoap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://access.servicesoap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="listeComptesClient">
+    <complexType/>
+   </element>
+   <element name="listeComptesClientResponse">
+    <complexType>
+     <sequence>
+      <element name="listeComptesClientReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isCorrect">
+    <complexType>
+     <sequence>
+      <element name="nom" type="xsd:string"/>
+      <element name="prenom" type="xsd:string"/>
+      <element name="motdepasse" type="xsd:string"/>
+      <element name="isClient" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isCorrectResponse">
+    <complexType>
+     <sequence>
+      <element name="isCorrectReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listeComptesVendeur">
+    <complexType/>
+   </element>
+   <element name="listeComptesVendeurResponse">
+    <complexType>
+     <sequence>
+      <element name="listeComptesVendeurReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="creerCompte">
+    <complexType>
+     <sequence>
+      <element name="nom" type="xsd:string"/>
+      <element name="prenom" type="xsd:string"/>
+      <element name="motdepasse" type="xsd:string"/>
+      <element name="isClient" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="creerCompteResponse">
+    <complexType>
+     <sequence>
+      <element name="creerCompteReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="listeComptesClientRequest">
+
+      <wsdl:part element="impl:listeComptesClient" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listeComptesVendeurResponse">
+
+      <wsdl:part element="impl:listeComptesVendeurResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="isCorrectResponse">
+
+      <wsdl:part element="impl:isCorrectResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="creerCompteResponse">
+
+      <wsdl:part element="impl:creerCompteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="isCorrectRequest">
+
+      <wsdl:part element="impl:isCorrect" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listeComptesVendeurRequest">
+
+      <wsdl:part element="impl:listeComptesVendeur" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="creerCompteRequest">
+
+      <wsdl:part element="impl:creerCompte" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listeComptesClientResponse">
+
+      <wsdl:part element="impl:listeComptesClientResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Comptes">
+
+      <wsdl:operation name="listeComptesClient">
+
+         <wsdl:input message="impl:listeComptesClientRequest" name="listeComptesClientRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listeComptesClientResponse" name="listeComptesClientResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCorrect">
+
+         <wsdl:input message="impl:isCorrectRequest" name="isCorrectRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:isCorrectResponse" name="isCorrectResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listeComptesVendeur">
+
+         <wsdl:input message="impl:listeComptesVendeurRequest" name="listeComptesVendeurRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listeComptesVendeurResponse" name="listeComptesVendeurResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="creerCompte">
+
+         <wsdl:input message="impl:creerCompteRequest" name="creerCompteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:creerCompteResponse" name="creerCompteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ComptesSoapBinding" type="impl:Comptes">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="listeComptesClient">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listeComptesClientRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listeComptesClientResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="isCorrect">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isCorrectRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isCorrectResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listeComptesVendeur">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listeComptesVendeurRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listeComptesVendeurResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="creerCompte">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="creerCompteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="creerCompteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ComptesService">
+
+      <wsdl:port binding="impl:ComptesSoapBinding" name="Comptes">
+
+         <wsdlsoap:address location="http://localhost:8080/servicesoap/services/Comptes"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

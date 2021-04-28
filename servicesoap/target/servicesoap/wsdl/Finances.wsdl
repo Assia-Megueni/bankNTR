@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://access.servicesoap" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://access.servicesoap" xmlns:intf="http://access.servicesoap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://access.servicesoap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="rembourserCommande">
+    <complexType>
+     <sequence>
+      <element name="idCommande" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rembourserCommandeResponse">
+    <complexType>
+     <sequence>
+      <element name="rembourserCommandeReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="payerCommande">
+    <complexType>
+     <sequence>
+      <element name="idCommande" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="payerCommandeResponse">
+    <complexType>
+     <sequence>
+      <element name="payerCommandeReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="rembourserCommandeRequest">
+
+      <wsdl:part element="impl:rembourserCommande" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="payerCommandeResponse">
+
+      <wsdl:part element="impl:payerCommandeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="payerCommandeRequest">
+
+      <wsdl:part element="impl:payerCommande" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="rembourserCommandeResponse">
+
+      <wsdl:part element="impl:rembourserCommandeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Finances">
+
+      <wsdl:operation name="rembourserCommande">
+
+         <wsdl:input message="impl:rembourserCommandeRequest" name="rembourserCommandeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:rembourserCommandeResponse" name="rembourserCommandeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="payerCommande">
+
+         <wsdl:input message="impl:payerCommandeRequest" name="payerCommandeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:payerCommandeResponse" name="payerCommandeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="FinancesSoapBinding" type="impl:Finances">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="rembourserCommande">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="rembourserCommandeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="rembourserCommandeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="payerCommande">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="payerCommandeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="payerCommandeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="FinancesService">
+
+      <wsdl:port binding="impl:FinancesSoapBinding" name="Finances">
+
+         <wsdlsoap:address location="http://localhost:8080/servicesoap/services/Finances"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

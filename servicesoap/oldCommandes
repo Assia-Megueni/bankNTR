@@ -1,0 +1,45 @@
+public boolean ajoutArticle(int idcommande, int idarticle, int quantité) {
+		// TODO
+		boolean result = false;
+		Items item = null;
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("commande");
+		EntityManager em = emf.createEntityManager();
+
+		Commande c = em.find(Commande.class, idcommande);
+		if(c != null){
+			em.getTransaction().begin();
+			Optional<Items> items = c.getItemsList().stream().filter(it -> {
+				if(it.getArticle()!=null)return it.getArticle().getIdProduit() == idarticle;
+				else return false;
+			}).findFirst();
+			if(items.isPresent()){
+				Logger.getGlobal().info("Item is inside");
+				int nb = items.get().getNb();
+				items.get().setNb(nb + quantité);
+			}else{
+				/* récupère l'article en base */
+				EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("article");
+				EntityManager em2 = emf2.createEntityManager();
+				em2.getTransaction().begin();
+				Produit produit = em2.find(Produit.class, idarticle);
+				if(produit != null) {
+					/* créer un item */
+					item = new Items(produit,quantité);
+					Logger.getGlobal().info("Item to send : "+item);
+					/* màj en base */
+					c.addItem(item);item.setNb(quantité);
+					em.merge(c);
+
+					result = true;
+				}else Logger.getGlobal().warning("Items est null");
+
+				em2.getTransaction().commit();
+				em2.close();
+				emf2.close();
+			}
+			em.getTransaction().commit();/* command with issues */
+		}else Logger.getGlobal().warning("Commande est null");
+		em.close();
+		emf.close();
+		return result;
+	}

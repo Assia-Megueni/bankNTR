@@ -1,0 +1,156 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\E6530\Server\wildfly-22.0.0.Final\standalone\deployments\servicesoapEAR.ear\servicesoap.war\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Comptes" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="listeComptesClient" qname="ns1:listeComptesClient" returnQName="ns1:listeComptesClientReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
+  <ns1:operation name="isCorrect" qname="ns2:isCorrect" returnQName="ns2:isCorrectReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:nom" type="xsd:string"/>
+   <ns1:parameter qname="ns2:prenom" type="xsd:string"/>
+   <ns1:parameter qname="ns2:motdepasse" type="xsd:string"/>
+   <ns1:parameter qname="ns2:isClient" type="xsd:boolean"/>
+  </ns1:operation>
+  <ns1:operation name="listeComptesVendeur" qname="ns3:listeComptesVendeur" returnQName="ns3:listeComptesVendeurReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="creerCompte" qname="ns4:creerCompte" returnQName="ns4:creerCompteReturn" returnType="xsd:boolean" soapAction="" xmlns:ns4="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:nom" type="xsd:string"/>
+   <ns1:parameter qname="ns4:prenom" type="xsd:string"/>
+   <ns1:parameter qname="ns4:motdepasse" type="xsd:string"/>
+   <ns1:parameter qname="ns4:isClient" type="xsd:boolean"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="creerCompte listeComptesVendeur listeComptesClient isCorrect"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Comptes"/>
+  <ns1:parameter name="className" value="servicesoap.access.Comptes"/>
+  <ns1:parameter name="wsdlServicePort" value="Comptes"/>
+  <ns1:parameter name="schemaQualified" value="http://access.servicesoap"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://access.servicesoap"/>
+  <ns1:parameter name="wsdlServiceElement" value="ComptesService"/>
+ </ns1:service>
+ <ns1:service name="Commandes" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="ajoutArticle" qname="ns5:ajoutArticle" returnQName="ns5:ajoutArticleReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:idcommande" type="xsd:int"/>
+   <ns1:parameter qname="ns5:idarticle" type="xsd:int"/>
+   <ns1:parameter qname="ns5:quantit&#xE9;" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="retraitArticle" qname="ns6:retraitArticle" returnQName="ns6:retraitArticleReturn" returnType="xsd:boolean" soapAction="" xmlns:ns6="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:idcommande" type="xsd:int"/>
+   <ns1:parameter qname="ns6:idarticle" type="xsd:int"/>
+   <ns1:parameter qname="ns6:quantit&#xE9;" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="creerCommande" qname="ns7:creerCommande" returnQName="ns7:creerCommandeReturn" returnType="xsd:boolean" soapAction="" xmlns:ns7="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:idClient" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="listeCommandes" qname="ns8:listeCommandes" returnQName="ns8:listeCommandesReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="commandesClient" qname="ns9:commandesClient" returnQName="ns9:commandesClientReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:nom" type="xsd:string"/>
+   <ns1:parameter qname="ns9:prenom" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="retraitArticle listeCommandes creerCommande commandesClient ajoutArticle"/>
+  <ns1:parameter name="wsdlPortType" value="Commandes"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://access.servicesoap"/>
+  <ns1:parameter name="wsdlServicePort" value="Commandes"/>
+  <ns1:parameter name="className" value="servicesoap.access.Commandes"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://access.servicesoap"/>
+  <ns1:parameter name="wsdlServiceElement" value="CommandesService"/>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="Articles" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getArticle" qname="ns10:getArticle" returnQName="ns10:getArticleReturn" returnType="xsd:string" soapAction="" xmlns:ns10="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:id" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="ajoutArticle" qname="ns11:ajoutArticle" returnQName="ns11:ajoutArticleReturn" returnType="xsd:boolean" soapAction="" xmlns:ns11="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:nom" type="xsd:string"/>
+   <ns1:parameter qname="ns11:categorie" type="xsd:string"/>
+   <ns1:parameter qname="ns11:prix" type="xsd:double"/>
+   <ns1:parameter qname="ns11:idVendeur" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="changerPrix" qname="ns12:changerPrix" returnQName="ns12:changerPrixReturn" returnType="xsd:boolean" soapAction="" xmlns:ns12="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:idArticle" type="xsd:int"/>
+   <ns1:parameter qname="ns12:prix" type="xsd:double"/>
+  </ns1:operation>
+  <ns1:operation name="changerCat&#xE9;gorie" qname="ns13:changerCat&#xE9;gorie" returnQName="ns13:changerCat&#xE9;gorieReturn" returnType="xsd:boolean" soapAction="" xmlns:ns13="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns13:idArticle" type="xsd:int"/>
+   <ns1:parameter qname="ns13:categorie" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="ajoutStock" qname="ns14:ajoutStock" returnQName="ns14:ajoutStockReturn" returnType="xsd:boolean" soapAction="" xmlns:ns14="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns14:idArticle" type="xsd:int"/>
+   <ns1:parameter qname="ns14:quantit&#xE9;" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="retirerStock" qname="ns15:retirerStock" returnQName="ns15:retirerStockReturn" returnType="xsd:boolean" soapAction="" xmlns:ns15="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns15:idArticle" type="xsd:int"/>
+   <ns1:parameter qname="ns15:quantit&#xE9;" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="getAllArticles" qname="ns16:getAllArticles" returnQName="ns16:getAllArticlesReturn" returnType="xsd:string" soapAction="" xmlns:ns16="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="changerCat&#xE9;gorie retirerStock getArticle ajoutArticle getAllArticles changerPrix ajoutStock"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Articles"/>
+  <ns1:parameter name="className" value="servicesoap.access.Articles"/>
+  <ns1:parameter name="wsdlServicePort" value="Articles"/>
+  <ns1:parameter name="schemaQualified" value="http://access.servicesoap"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://access.servicesoap"/>
+  <ns1:parameter name="wsdlServiceElement" value="ArticlesService"/>
+ </ns1:service>
+ <ns1:service name="Finances" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="rembourserCommande" qname="ns17:rembourserCommande" returnQName="ns17:rembourserCommandeReturn" returnType="xsd:boolean" soapAction="" xmlns:ns17="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns17:idCommande" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="payerCommande" qname="ns18:payerCommande" returnQName="ns18:payerCommandeReturn" returnType="xsd:boolean" soapAction="" xmlns:ns18="http://access.servicesoap" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns18:idCommande" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="payerCommande rembourserCommande"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Finances"/>
+  <ns1:parameter name="className" value="servicesoap.access.Finances"/>
+  <ns1:parameter name="wsdlServicePort" value="Finances"/>
+  <ns1:parameter name="schemaQualified" value="http://access.servicesoap"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://access.servicesoap"/>
+  <ns1:parameter name="wsdlServiceElement" value="FinancesService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

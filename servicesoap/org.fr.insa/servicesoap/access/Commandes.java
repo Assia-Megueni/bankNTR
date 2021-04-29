@@ -29,7 +29,7 @@ public class Commandes {
 		Collection<Commande> ce = (Collection<Commande>) query.getResultList();
 		em.close();
 		emf.close();
-
+		
 		ce.forEach(commande -> {
 			JSONObject obj = new JSONObject();
 			obj.put("id", commande.getIdCommande());
@@ -75,7 +75,6 @@ public class Commandes {
 		Collection<Commande> ce = (Collection<Commande>) query.getResultList();
 		em.close();
 		emf.close();
-
 		ce.forEach(commande -> {
 			JSONObject obj = new JSONObject();
 			obj.put("id", commande.getIdCommande());
@@ -262,4 +261,5 @@ public class Commandes {
 		emf.close();
 		return true;
 	}
+
 }

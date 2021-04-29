@@ -4,16 +4,6 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://access.servicesoap" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="listeComptesClient">
-    <complexType/>
-   </element>
-   <element name="listeComptesClientResponse">
-    <complexType>
-     <sequence>
-      <element name="listeComptesClientReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="isCorrect">
     <complexType>
      <sequence>
@@ -41,6 +31,16 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="listeComptesClient">
+    <complexType/>
+   </element>
+   <element name="listeComptesClientResponse">
+    <complexType>
+     <sequence>
+      <element name="listeComptesClientReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="creerCompte">
     <complexType>
      <sequence>
@@ -58,12 +58,28 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="idPersonne">
+    <complexType>
+     <sequence>
+      <element name="nom" type="xsd:string"/>
+      <element name="prenom" type="xsd:string"/>
+      <element name="isClient" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="idPersonneResponse">
+    <complexType>
+     <sequence>
+      <element name="idPersonneReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="listeComptesClientRequest">
+   <wsdl:message name="idPersonneRequest">
 
-      <wsdl:part element="impl:listeComptesClient" name="parameters">
+      <wsdl:part element="impl:idPersonne" name="parameters">
 
       </wsdl:part>
 
@@ -72,6 +88,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="listeComptesVendeurResponse">
 
       <wsdl:part element="impl:listeComptesVendeurResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="listeComptesClientRequest">
+
+      <wsdl:part element="impl:listeComptesClient" name="parameters">
 
       </wsdl:part>
 
@@ -117,6 +141,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="idPersonneResponse">
+
+      <wsdl:part element="impl:idPersonneResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="listeComptesClientResponse">
 
       <wsdl:part element="impl:listeComptesClientResponse" name="parameters">
@@ -126,18 +158,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </wsdl:message>
 
    <wsdl:portType name="Comptes">
-
-      <wsdl:operation name="listeComptesClient">
-
-         <wsdl:input message="impl:listeComptesClientRequest" name="listeComptesClientRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:listeComptesClientResponse" name="listeComptesClientResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="isCorrect">
 
@@ -163,6 +183,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="listeComptesClient">
+
+         <wsdl:input message="impl:listeComptesClientRequest" name="listeComptesClientRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:listeComptesClientResponse" name="listeComptesClientResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="creerCompte">
 
          <wsdl:input message="impl:creerCompteRequest" name="creerCompteRequest">
@@ -175,29 +207,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="idPersonne">
+
+         <wsdl:input message="impl:idPersonneRequest" name="idPersonneRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:idPersonneResponse" name="idPersonneResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="ComptesSoapBinding" type="impl:Comptes">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
-      <wsdl:operation name="listeComptesClient">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="listeComptesClientRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="listeComptesClientResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="isCorrect">
 
@@ -235,6 +261,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="listeComptesClient">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listeComptesClientRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listeComptesClientResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="creerCompte">
 
          <wsdlsoap:operation soapAction=""/>
@@ -253,13 +297,31 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="idPersonne">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="idPersonneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="idPersonneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:binding>
 
    <wsdl:service name="ComptesService">
 
       <wsdl:port binding="impl:ComptesSoapBinding" name="Comptes">
 
-         <wsdlsoap:address location="http://localhost:8080/servicesoap/services/Comptes"/>
+         <wsdlsoap:address location="http://localhost:5043/servicesoap/services/Comptes"/>
 
       </wsdl:port>
 

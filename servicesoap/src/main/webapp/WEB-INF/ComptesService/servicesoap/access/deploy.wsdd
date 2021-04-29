@@ -10,8 +10,6 @@
       <parameter name="className" value="servicesoap.access.Comptes"/>
       <parameter name="wsdlPortType" value="Comptes"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="listeComptesClient" qname="operNS:listeComptesClient" returnQName="retNS:listeComptesClientReturn" returnType="rtns:string" soapAction="">
-      </operation>
       <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="isCorrect" qname="operNS:isCorrect" returnQName="retNS:isCorrectReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
         <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:prenom" type="tns:string"/>
@@ -20,13 +18,20 @@
       </operation>
       <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="listeComptesVendeur" qname="operNS:listeComptesVendeur" returnQName="retNS:listeComptesVendeurReturn" returnType="rtns:string" soapAction="">
       </operation>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="listeComptesClient" qname="operNS:listeComptesClient" returnQName="retNS:listeComptesClientReturn" returnType="rtns:string" soapAction="">
+      </operation>
       <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="creerCompte" qname="operNS:creerCompte" returnQName="retNS:creerCompteReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
         <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:prenom" type="tns:string"/>
         <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:motdepasse" type="tns:string"/>
         <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:isClient" type="tns:boolean"/>
       </operation>
-      <parameter name="allowedMethods" value="creerCompte listeComptesVendeur listeComptesClient isCorrect"/>
+      <operation xmlns:operNS="http://access.servicesoap" xmlns:retNS="http://access.servicesoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="idPersonne" qname="operNS:idPersonne" returnQName="retNS:idPersonneReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:prenom" type="tns:string"/>
+        <parameter xmlns:pns="http://access.servicesoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:isClient" type="tns:boolean"/>
+      </operation>
+      <parameter name="allowedMethods" value="creerCompte listeComptesVendeur idPersonne listeComptesClient isCorrect"/>
 
   </service>
 </deployment>

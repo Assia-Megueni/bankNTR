@@ -22,6 +22,36 @@ public class Comptes {
 	 * @return
 	 */
 	public boolean isCorrect(String nom, String prenom, String motdepasse, boolean isClient) {
+		Personne p = null;
+		StringBuilder sb = new StringBuilder("SELECT p FROM ");
+		sb.append(isClient?"Client p ":"Vendeur p ");
+		sb.append("WHERE p.nom = :nom AND p.prenom = :prenom AND p.motdepasse = :mdp");
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("user");
+		EntityManager em = emf.createEntityManager();
+		try {
+		p = (Personne) em.createQuery(sb.toString())
+				.setParameter("nom", nom.trim()).setParameter("prenom", prenom.trim())
+				.setParameter("mdp",motdepasse.trim())
+				.getResultList().get(0);
+		}catch(Exception e) {
+			
+		}
+		
+		em.close();
+		emf.close();
+		if(p==null)return false;
+		return p.getMotdepasse().equals(motdepasse.trim());
+	}
+
+	/**
+	 * Obtenir l'identifiant du client
+	 * @param nom
+	 * @param prenom
+	 * @param isClient
+	 * @return
+	 */
+	public int idPersonne(String nom, String prenom,boolean isClient) {
 		// TODO
 		Personne p = null;
 		StringBuilder sb = new StringBuilder("SELECT p FROM ");
@@ -31,17 +61,17 @@ public class Comptes {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("user");
 		EntityManager em = emf.createEntityManager();
 		try {
-		p = (Personne) em.createQuery(sb.toString())
-				.setParameter("nom", nom.trim()).setParameter("prenom", prenom.trim())
-				.getSingleResult();
+			p = (Personne) em.createQuery(sb.toString())
+					.setParameter("nom", nom.trim()).setParameter("prenom", prenom.trim())
+					.getResultList().get(0);
 		}catch(Exception e) {
-			
+
 		}
-		
+
 		em.close();
 		emf.close();
-		if(p==null)return false;
-		return p.getMotdepasse().equals(motdepasse.trim());
+		if(p==null)return -1;
+		return p.getIdPersonne();
 	}
 
 	/**
@@ -82,7 +112,7 @@ public class Comptes {
 
 		Query query = em.createQuery("SELECT c FROM Client c");
 		Collection<Client> ce = (Collection<Client>) query.getResultList();
-		
+
 		ce.forEach(personne -> {
 			JSONObject obj = new JSONObject();
 			obj.put("id", personne.getIdPersonne());
@@ -105,7 +135,7 @@ public class Comptes {
 
 		Query query = em.createQuery("SELECT v FROM Vendeur v");
 		Collection<Vendeur> ce = (Collection<Vendeur>) query.getResultList();
-		
+
 		ce.forEach(personne -> {
 			JSONObject obj = new JSONObject();
 			obj.put("id", personne.getIdPersonne());
